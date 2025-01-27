@@ -14,7 +14,8 @@ import dotenv
 
 dotenv.load_dotenv()
     
-all_texts = get_docs()
+# all_texts = get_docs()
+all_texts = ["hello"]
 
 # Embed
 vectorstore = Chroma.from_texts(
