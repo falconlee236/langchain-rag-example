@@ -42,5 +42,12 @@ variable "gcp_services" {
         "sql-component.googleapis.com",
         "servicenetworking.googleapis.com",
         "secretmanager.googleapis.com",
+        "bigtable.googleapis.com",
+        "bigtableadmin.googleapis.com",
+        "bigtabletableadmin.googleapis.com",
+        "pubsub.googleapis.com",
+        "cloudfunctions.googleapis.com",
+        "cloudbuild.googleapis.com",
+        "eventarc.googleapis.com",
     ]
 }

@@ -148,7 +148,7 @@ def get_docs() -> list[str]:
     
     return docs
 
-if __name__ == "__main__":
+def main():
     # https://python.langchain.com/docs/integrations/vectorstores/google_cloud_sql_pg/
     # get connection
     engine = PostgresEngine.from_instance(
@@ -197,6 +197,10 @@ if __name__ == "__main__":
         embedding=embedding,
     )
 
+
+if __name__ == "__main__":
+    main()
+    
     # retriever = store.as_retriever()
 
     # prompt = hub.pull('rlm/rag-prompt')
@@ -215,3 +219,9 @@ if __name__ == "__main__":
     
     # # Question
     # print(rag_chain.invoke("What is Google Cloud Platform?"))
+
+import functions_framework
+
+@functions_framework.cloud_event
+def my_cloudevent_function(cloud_event):
+    print(cloud_event.data)
