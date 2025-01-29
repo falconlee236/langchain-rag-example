@@ -48,7 +48,7 @@ resource "null_resource" "setup_pgvector" {
 
     provisioner "local-exec" {
         command = <<-EOT
-        PGPASSWORD=${google_sql_user.user.password} psql \
+        PGPASSWORD="${google_sql_user.user.password}" psql \
         -h ${google_sql_database_instance.primary.public_ip_address} \
         -U ${google_sql_user.user.name} \
         -d ${google_sql_database.db.name} \

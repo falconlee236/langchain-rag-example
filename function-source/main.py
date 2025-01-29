@@ -221,7 +221,31 @@ if __name__ == "__main__":
     # print(rag_chain.invoke("What is Google Cloud Platform?"))
 
 import functions_framework
+import base64
 
+from cloudevents.http import CloudEvent
+from google.cloud import pubsub_v1
+
+# example https://github.com/GoogleCloudPlatform/python-docs-samples/blob/main/functions/v2/pubsub/main.py
 @functions_framework.cloud_event
-def my_cloudevent_function(cloud_event):
-    print(cloud_event.data)
+def my_cloudevent_function(cloud_event: CloudEvent) -> None:
+    decoded = base64.b64decode(cloud_event.data["message"]["data"])
+    data = decoded.decode()
+    if data == "finish":
+        return
+    
+    publisher = pubsub_v1.PublisherClient()
+    topic_path = publisher.topic_path(
+        project="optimap-438115",
+        topic="functions2-topic",
+    )
+    data_str = "finish"
+    # when you publish a message, the client returns a future
+    publish_future = publisher.publish(
+        topic_path, 
+        data_str.encode("utf-8"), # byte string by utf8, 자동으로 base64로 인코딩
+        origin="python-sample", username="gcp"
+    )
+
+
+    

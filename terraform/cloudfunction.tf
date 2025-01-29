@@ -10,7 +10,7 @@ resource "google_cloudfunctions2_function" "default" {
             BUILD_CONFIG_TEST = "build_test"
         }
         source {
-            storage_source {
+            storage_source { # build 한 함수가 저장되는 부분
                 bucket = google_storage_bucket.default.name
                 object = google_storage_bucket_object.default.name
             }
