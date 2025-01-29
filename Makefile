@@ -9,5 +9,5 @@ apply:
 	@cd terraform && terraform init && terraform apply -auto-approve
 
 destroy:
-	@rm -f function-source.zip
 	@cd terraform && terraform init && terraform destroy -auto-approve
+	@rm -f function-source.zip
