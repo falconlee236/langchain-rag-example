@@ -40,19 +40,3 @@ resource "google_sql_database_instance" "primary" {
 
     depends_on = [ time_sleep.wait_60_seconds ]
 }
-
-
-# install pgvector extension to postgresql  null_resource
-resource "null_resource" "setup_pgvector" {
-    depends_on = [google_sql_database.db]
-
-    provisioner "local-exec" {
-        command = <<-EOT
-        PGPASSWORD="${google_sql_user.user.password}" psql \
-        -h ${google_sql_database_instance.primary.public_ip_address} \
-        -U ${google_sql_user.user.name} \
-        -d ${google_sql_database.db.name} \
-        -c 'CREATE EXTENSION IF NOT EXISTS vector;'
-        EOT
-    }
-}

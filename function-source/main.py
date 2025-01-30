@@ -149,7 +149,7 @@ def get_docs() -> list[str]:
     return docs
 
 def main():
-    # https://python.langchain.com/docs/integrations/vectorstores/google_cloud_sql_pg/
+    # https://python.langchain.com/docs/integrations/vectorstores/google_vertex_ai_vector_search/
     # get connection
     engine = PostgresEngine.from_instance(
         project_id="optimap-438115",
