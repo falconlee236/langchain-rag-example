@@ -40,3 +40,5 @@ resource "google_sql_database_instance" "primary" {
 
     depends_on = [ time_sleep.wait_60_seconds ]
 }
+
+# test comment
